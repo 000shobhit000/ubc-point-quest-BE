@@ -76,7 +76,7 @@ const deletePinPoint = async (req, res) => {
 
 const getPinPoint = async (req, res) => {
   try {
-    const { pinPointId } = req.body;
+    const { pinPointId } = req.query;
     const fetchedPP = await PINPOINT.findById(pinPointId);
     if (!fetchedPP) {
       return throwError(

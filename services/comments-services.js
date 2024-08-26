@@ -110,7 +110,8 @@ const replyOnComment = async (req, res) => {
 
 const getAllComments = async (req, res) => {
   try {
-    const fetchedCmts = await COMMENTS.find();
+    const { pinPointId } = req.query;
+    const fetchedCmts = await COMMENTS.find({ pinPointId: pinPointId });
     return makeResponse(
       res,
       RESPONSE_STATUS.SUCCESS,
@@ -156,7 +157,7 @@ const delComment = async (req, res) => {
       RESPONSE_STATUS.SUCCESS,
       true,
       RESPONSE_MESSAGES.SUCCESS,
-      deletedCmt
+      undefined
     );
   } catch (error) {
     console.log(error);
@@ -196,7 +197,7 @@ const delReply = async (req, res) => {
       RESPONSE_STATUS.SUCCESS,
       true,
       RESPONSE_MESSAGES.SUCCESS,
-      deletedReply
+      undefined
     );
   } catch (error) {
     console.log(error);

@@ -6,10 +6,12 @@
     "start": "pm2 start ecosystem.config.js && pm2 logs"
   },
   "dependencies": {
+    "aws-sdk": "^2.1683.0",
     "bluebird": "^3.7.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "formidable": "^3.5.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "mongoose": "^8.5.4",
