@@ -74,7 +74,61 @@ const deletePinPoint = async (req, res) => {
   }
 };
 
+const getPinPoint = async (req, res) => {
+  try {
+    const { pinPointId } = req.body;
+    const fetchedPP = await PINPOINT.findById(pinPointId);
+    if (!fetchedPP) {
+      return throwError(
+        RESPONSE_STATUS.NOT_FOUND,
+        "Error in fetching PinPoint: "
+      );
+    }
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SUCCESS,
+      true,
+      RESPONSE_MESSAGES.SUCCESS,
+      fetchedPP
+    );
+  } catch (error) {
+    console.log(error);
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SERVER_ERROR,
+      false,
+      "Error in getPinPoint api: " + error,
+      undefined
+    );
+  }
+};
+
+const getAllPinPoints = async (req, res) => {
+  try {
+    const fetchedPP = await PINPOINT.find();
+
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SUCCESS,
+      true,
+      RESPONSE_MESSAGES.SUCCESS,
+      fetchedPP
+    );
+  } catch (error) {
+    console.log(error);
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SERVER_ERROR,
+      false,
+      "Error in getAllPinPoints api: " + error,
+      undefined
+    );
+  }
+};
+
 module.exports = {
   addPinPoint,
   deletePinPoint,
+  getPinPoint,
+  getAllPinPoints,
 };
