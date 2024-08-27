@@ -9,13 +9,15 @@ const { default: mongoose } = require("mongoose");
 
 const addComment = async (req, res) => {
   try {
-    const { pinPointId, name, text, like = false } = req.body;
+    const { pinPointId, image, name, text, like = false } = req.body;
 
     const updateObj = {
+      image,
       name,
       text,
-      like,
+      like: Boolean(like),
     };
+    console.log("updateObj", updateObj);
     let addedCmt;
     const ifAnyCmt = await COMMENTS.findOne({
       pinPointId: pinPointId,

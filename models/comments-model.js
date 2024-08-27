@@ -51,6 +51,9 @@ const commentsSchema = new db.Schema(
           type: Boolean,
           default: false,
         },
+        image: {
+          type: String,
+        },
         reply: [replySchema], // Use the reply schema
       },
     ],
