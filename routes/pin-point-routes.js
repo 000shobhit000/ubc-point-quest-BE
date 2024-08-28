@@ -11,4 +11,6 @@ router.post("/delete", pinPointServices.deletePinPoint);
 router.get("/get", pinPointServices.getPinPoint);
 router.get("/get-all", pinPointServices.getAllPinPoints);
 
+router.delete("/delete-all", pinPointServices.deleteAllPinPoints);
+
 module.exports = router;

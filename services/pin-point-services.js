@@ -74,6 +74,44 @@ const deletePinPoint = async (req, res) => {
   }
 };
 
+const deleteAllPinPoints = async (req, res) => {
+  try {
+    // const { pinPointId } = req.body;
+    // const deletedPinPoint = await PINPOINT.findByIdAndDelete(pinPointId);
+    // if (deletedPinPoint) {
+    //   return makeResponse(
+    //     res,
+    //     RESPONSE_STATUS.SUCCESS,
+    //     true,
+    //     RESPONSE_MESSAGES.SUCCESS,
+    //     deletedPinPoint
+    //   );
+    // }
+    // return throwError(
+    //   RESPONSE_STATUS.NOT_FOUND,
+    //   "Error in deleting PinPoint: "
+    // );
+    const result = await PINPOINT.deleteMany({});
+    console.log(result);
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SUCCESS,
+      true,
+      RESPONSE_MESSAGES.SUCCESS,
+      deleteAllPinPoints
+    );
+  } catch (error) {
+    console.log(error);
+    return makeResponse(
+      res,
+      RESPONSE_STATUS.SERVER_ERROR,
+      false,
+      "Error in deletePinPoint api: " + error,
+      undefined
+    );
+  }
+};
+
 const getPinPoint = async (req, res) => {
   try {
     const { pinPointId } = req.query;
@@ -131,4 +169,5 @@ module.exports = {
   deletePinPoint,
   getPinPoint,
   getAllPinPoints,
+  deleteAllPinPoints
 };

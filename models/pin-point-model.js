@@ -2,6 +2,11 @@ const db = require("../bin/db");
 
 const pinPointSchema = new db.Schema(
   {
+    markerId: {
+      type: String,
+      // required: true,
+      // index: true
+    },
     lat: {
       type: Number,
       required: true,
