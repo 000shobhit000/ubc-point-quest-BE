@@ -75,7 +75,7 @@ const replyOnComment = async (req, res) => {
     const repliedCmt = await COMMENTS.findOneAndUpdate(
       {
         pinPointId: pinPointId,
-        "comments._id": commentId,
+        "comments.usedId": commentId,
       },
       {
         $push: {
@@ -121,6 +121,9 @@ const getAllComments = async (req, res) => {
       RESPONSE_MESSAGES.SUCCESS,
       fetchedCmts
     );
+
+
+    
   } catch (error) {
     console.log(error);
     return makeResponse(

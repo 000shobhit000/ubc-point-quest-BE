@@ -6,11 +6,14 @@ const { formidableMiddleware } = require("../common/middlewares");
 
 /* GET home page. */
 router.post("/add", formidableMiddleware, pinPointServices.addPinPoint);
+router.post("/add-many", formidableMiddleware, pinPointServices.addManyPinPoints);
+
 router.post("/delete", pinPointServices.deletePinPoint);
 // router.post("/get", formidableMiddleware, pinPointServices.getPinPoint);
 router.get("/get", pinPointServices.getPinPoint);
 router.get("/get-all", pinPointServices.getAllPinPoints);
 
 router.delete("/delete-all", pinPointServices.deleteAllPinPoints);
+
 
 module.exports = router;

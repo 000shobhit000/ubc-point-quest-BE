@@ -20,11 +20,12 @@ const replySchema = new db.Schema(
   { _id: true, timestamps: true } // _id is generated automatically unless set to false
 );
 
+
 // Define the main comments schema
 const commentsSchema = new db.Schema(
   {
     pinPointId: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       required: true,
       ref: "pin-points",
     },
@@ -35,7 +36,7 @@ const commentsSchema = new db.Schema(
     comments: [
       {
         userId: {
-          type: mongoose.Types.ObjectId,
+          type: String,
           ref: "users",
         },
         name: {

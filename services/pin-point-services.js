@@ -3,13 +3,15 @@ const COMMENTS = require("../models/comments-model");
 
 const { makeResponse, throwError } = require("../common/functions");
 const { RESPONSE_STATUS, RESPONSE_MESSAGES } = require("../common/constants");
+const { request } = require("express");
 
 // service handelers ^_^
 
 const addPinPoint = async (req, res) => {
   try {
-    const { lat, lng, name, description, image, category, address } = req.body;
+    const { markerId, lat, lng, name, description, image, category, address } = req.body;
     const pinPoint = {
+      markerId,
       lat,
       lng,
       name,
@@ -44,6 +46,60 @@ const addPinPoint = async (req, res) => {
     );
   }
 };
+
+const addManyPinPoints = async (req, res) => {
+  console.log("!!!!!!!!!!!!!")
+  // if (!req.body || req.body.length === 0) {
+  //   return throwError(
+  //     RESPONSE_STATUS.BAD_REQUEST,
+  //     "Error in adding PinPoint: empty body received"
+
+  //   );
+  // }
+
+  // try {
+  //   for (const marker of req.body) {
+  //     console.log(marker);
+    
+  //   }
+  //   // const { markerId, lat, lng, name, description, image, category, address } = req.marker;
+  //   // const pinPoint = {
+  //   //   markerId,
+  //   //   lat,
+  //   //   lng,
+  //   //   name,
+  //   //   description,
+  //   //   image,
+  //   //   category,
+  //   //   address,
+  //   // };
+  //   // const savedPinPoint = await PINPOINT.create(pinPoint);
+
+  //   // if (savedPinPoint) {
+      return makeResponse(
+        res,
+        RESPONSE_STATUS.CREATED,
+        true,
+        RESPONSE_MESSAGES.REGISTER_SUCCESS,
+        // savedPinPoint
+      );
+  //   // }
+  //   // return throwError(
+  //   //   RESPONSE_STATUS.BAD_REQUEST,
+  //   //   "Error in adding PinPoint: "
+  //   // );
+  // } catch (error) {
+  //   console.log(error);
+  //   return makeResponse(
+  //     res,
+  //     RESPONSE_STATUS.SERVER_ERROR,
+  //     false,
+  //     "Error in addPinPoint api: " + error,
+  //     undefined
+  //   );
+  // }
+};
+
 
 const deletePinPoint = async (req, res) => {
   try {
@@ -144,7 +200,8 @@ const getPinPoint = async (req, res) => {
 const getAllPinPoints = async (req, res) => {
   try {
     const fetchedPP = await PINPOINT.find();
-
+    console.log(fetchedPP);
+    
     return makeResponse(
       res,
       RESPONSE_STATUS.SUCCESS,
@@ -169,5 +226,6 @@ module.exports = {
   deletePinPoint,
   getPinPoint,
   getAllPinPoints,
-  deleteAllPinPoints
+  deleteAllPinPoints,
+  addManyPinPoints
 };
