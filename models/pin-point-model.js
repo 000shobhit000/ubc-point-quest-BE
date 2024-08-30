@@ -34,6 +34,10 @@ const pinPointSchema = new db.Schema(
     address: {
       type: String,
     },
+    takeAction: {
+      type: String, // New field for takeAction
+      default: '', // Default value is an empty string
+    },
   },
   { minimize: false, timestamps: true }
 );

@@ -9,7 +9,7 @@ const { request } = require("express");
 
 const addPinPoint = async (req, res) => {
   try {
-    const { markerId, lat, lng, name, description, image, category, address } = req.body;
+    const { markerId, lat, lng, name, description, image, category, address, takeAction } = req.body;
     const pinPoint = {
       markerId,
       lat,
@@ -19,6 +19,7 @@ const addPinPoint = async (req, res) => {
       image,
       category,
       address,
+      takeAction
     };
     const savedPinPoint = await PINPOINT.create(pinPoint);
 
