@@ -200,7 +200,7 @@ const getPinPoint = async (req, res) => {
 const getAllPinPoints = async (req, res) => {
   try {
     const fetchedPP = await PINPOINT.find();
-    console.log(fetchedPP);
+    //console.log(fetchedPP);
     
     return makeResponse(
       res,

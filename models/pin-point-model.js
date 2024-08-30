@@ -26,9 +26,11 @@ const pinPointSchema = new db.Schema(
     image: {
       type: String,
     },
-    category: {
+    category: [
+      {
       type: String,
-    },
+      }
+    ],
     address: {
       type: String,
     },

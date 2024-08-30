@@ -8,10 +8,12 @@ const { default: mongoose } = require("mongoose");
 // service handelers ^_^
 
 const addComment = async (req, res) => {
+  console.log("***********", req.body);
   try {
-    const { pinPointId, image, name, text, like = false } = req.body;
+    const { commentId, pinPointId, image, name, text, like = false } = req.body;
 
     const updateObj = {
+      commentId,
       image,
       name,
       text,
@@ -65,17 +67,21 @@ const addComment = async (req, res) => {
 
 const replyOnComment = async (req, res) => {
   try {
-    const { pinPointId, commentId, name, text } = req.body;
+    console.log(" @@@@@@ ",req.body);
+    const { pinPointId, commentId, name, text, image } = req.body;
     const replyObj = {
       // userId: req.userId,
       name,
       text,
+      commentId, 
+      pinPointId, 
+      image
     };
 
     const repliedCmt = await COMMENTS.findOneAndUpdate(
       {
         pinPointId: pinPointId,
-        "comments.usedId": commentId,
+        "comments.commentId": commentId,
       },
       {
         $push: {

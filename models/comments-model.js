@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 const db = require("../bin/db");
 
 // Define the nested reply schema
-const replySchema = new db.Schema(
-  {
-    userId: {
-      type: mongoose.Types.ObjectId,
-      ref: "users",
-    },
-    name: {
-      type: String,
-      required: true,
-    },
-    text: {
-      type: String,
-      required: true,
-    },
-  },
-  { _id: true, timestamps: true } // _id is generated automatically unless set to false
-);
+// const replySchema = new db.Schema(
+//   {
+//     userId: {
+//       type: mongoose.Types.ObjectId,
+//       ref: "users",
+//     },
+//     name: {
+//       type: String,
+//       required: true,
+//     },
+//     text: {
+//       type: String,
+//       required: true,
+//     },
+//   },
+//   { _id: true, timestamps: true } // _id is generated automatically unless set to false
+// );
 
 
 // Define the main comments schema
@@ -39,6 +39,12 @@ const commentsSchema = new db.Schema(
           type: String,
           ref: "users",
         },
+        commentId: {
+          type: String,
+          required: true,
+          unique: true
+          
+        },
         name: {
           type: String,
           required: true,
@@ -55,7 +61,7 @@ const commentsSchema = new db.Schema(
         image: {
           type: String,
         },
-        reply: [replySchema], // Use the reply schema
+        //reply: [replySchema], // Use the reply schema
       },
     ],
   },
